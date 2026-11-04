@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+mutants/
+reports/
+salidas/
+logs/
+control/registro-hitl.csv
+.venv/
