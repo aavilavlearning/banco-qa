@@ -1,0 +1,50 @@
+[
+  {
+    "name": "ejecutar_suite",
+    "description": "Ejecuta una suite de tests automatizados de BancoQA en un ambiente de prueba y devuelve un resumen corto (total, fallidos con su caso CP-xx y ruta del reporte). Úsala cuando pidan correr, validar o verificar tests. Nunca en producción.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "suite": {
+          "type": "string",
+          "enum": ["unit", "api-transferencias", "e2e-banca-web", "caracterizacion", "regresion"],
+          "description": "Suite a ejecutar. regresion = todas."
+        },
+        "ambiente": {
+          "type": "string",
+          "enum": ["dev", "qa"],
+          "description": "dev = app en memoria; qa = servidor de QA (BANCOQA_URL)."
+        },
+        "casos": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^CP-\\d\\d$" },
+          "description": "Opcional: IDs de la matriz de trazabilidad a ejecutar, por ejemplo [\"CP-07\"]."
+        }
+      },
+      "required": ["suite", "ambiente"]
+    }
+  },
+  {
+    "name": "obtener_resultados_ci",
+    "description": "Devuelve el resumen de la última ejecución registrada (local o del pipeline de CI). Solo lectura. Úsala cuando pregunten cómo terminó la última corrida o qué falló.",
+    "input_schema": { "type": "object", "properties": {} }
+  },
+  {
+    "name": "crear_borrador_defecto",
+    "description": "Crea un BORRADOR de defecto para revisión del QE; no publica nada. Úsala solo cuando un test falle por un posible defecto del sistema, no por el test ni por el ambiente.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "titulo": { "type": "string" },
+        "caso": { "type": "string", "pattern": "^CP-\\d\\d$", "description": "ID del caso de la matriz" },
+        "regla": { "type": "string", "pattern": "^R-\\d\\d$", "description": "Regla incumplida" },
+        "pasos": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "esperado": { "type": "string" },
+        "obtenido": { "type": "string" },
+        "evidencia": { "type": "string", "description": "Salida del test, request/response o ruta del reporte" },
+        "severidad": { "type": "string", "enum": ["Crítica", "Alta", "Media", "Baja"] }
+      },
+      "required": ["titulo", "caso", "regla", "pasos", "esperado", "obtenido", "evidencia", "severidad"]
+    }
+  }
+]

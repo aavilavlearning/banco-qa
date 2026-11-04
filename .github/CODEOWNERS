@@ -1,0 +1,7 @@
+# Guardrail sin código (Módulo 8): todo cambio en estas rutas necesita la aprobación del equipo de QA.
+# Reemplaza @equipo-qa por el equipo o las personas reales de tu organización en GitHub.
+/tests/          @equipo-qa
+/trazabilidad/   @equipo-qa
+/.github/        @equipo-qa
+/AGENTS.md       @equipo-qa
+/harness/        @equipo-qa

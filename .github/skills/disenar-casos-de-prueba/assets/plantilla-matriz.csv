@@ -1,0 +1,2 @@
+Caso,CA,Regla,Descripcion,Datos,Esperado,Prioridad
+CP-05,CA-02,R-03,Saldo insuficiente por 0.01,"191-0000003 -> 191-0000001; 500.01",Rechazada R-03: Saldo insuficiente para realizar la operación,Alta

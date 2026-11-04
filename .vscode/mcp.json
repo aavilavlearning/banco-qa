@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "banco-qa": {
+      "command": "python",
+      "args": ["${workspaceFolder}/servidor_mcp/banco_qa_server.py"]
+    }
+  }
+}

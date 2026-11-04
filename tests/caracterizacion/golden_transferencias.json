@@ -1,0 +1,50 @@
+{
+  "saldo justo": {
+    "status": 201,
+    "respuesta": {
+      "estado": "APROBADA",
+      "cuenta_origen": "191-0000003",
+      "cuenta_destino": "191-0000001",
+      "moneda": "PEN",
+      "monto": "500.00"
+    }
+  },
+  "saldo insuficiente": {
+    "status": 422,
+    "respuesta": {
+      "regla": "R-03",
+      "mensaje": "Saldo insuficiente para realizar la operación"
+    }
+  },
+  "destino bloqueado": {
+    "status": 422,
+    "respuesta": {
+      "regla": "R-05",
+      "mensaje": "La cuenta origen o destino no está habilitada"
+    }
+  },
+  "dolares": {
+    "status": 201,
+    "respuesta": {
+      "estado": "APROBADA",
+      "cuenta_origen": "191-0000002",
+      "cuenta_destino": "191-0000005",
+      "moneda": "USD",
+      "monto": "250.00"
+    }
+  },
+  "sobre limite diario": {
+    "status": 422,
+    "respuesta": {
+      "regla": "R-04",
+      "mensaje": "La operación supera tu límite diario"
+    }
+  },
+  "tres decimales": {
+    "status": 422,
+    "respuesta": {
+      "regla": "R-02",
+      "mensaje": "El monto admite como máximo 2 decimales"
+    }
+  }
+}

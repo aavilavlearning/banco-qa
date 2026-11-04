@@ -1,0 +1,23 @@
+[project]
+name = "bancoqa-lab"
+version = "1.0.0"
+description = "Laboratorio de IA aplicada a testing sobre BancoQA (datos ficticios)"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "requests",
+  "httpx",
+  "pytest",
+  "pytest-playwright",
+  "mcp>=2",
+  "pyyaml",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "caso(id): ID del caso de prueba de la matriz de trazabilidad (CP-xx)",
+  "e2e: tests de interfaz web con Playwright",
+]

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__banco-qa__ejecutar_suite",
+      "mcp__banco-qa__obtener_resultados_ci",
+      "Bash(pytest:*)",
+      "Bash(python trazabilidad/verificar_trazabilidad.py:*)"
+    ],
+    "ask": [
+      "mcp__banco-qa__crear_borrador_defecto",
+      "Bash(git commit:*)"
+    ],
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Edit(app/**)",
+      "Read(.env)"
+    ]
+  }
+}

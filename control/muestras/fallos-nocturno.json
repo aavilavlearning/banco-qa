@@ -1,0 +1,35 @@
+[
+  {
+    "id": "F-01",
+    "test": "tests/api/test_transferencias_api.py::test_interbancaria_a_las_19_59_se_aprueba",
+    "caso": "CP-13",
+    "error": "requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='qa.bancoqa.local', port=443): Max retries exceeded",
+    "historial": ["pasó", "pasó", "pasó"],
+    "mismo_commit": true
+  },
+  {
+    "id": "F-02",
+    "test": "tests/e2e/test_transferencia_web.py::test_el_cliente_ve_la_operacion_aprobada",
+    "caso": "CP-01",
+    "error": "AssertionError: Locator expected to contain text 'Transferencia aprobada'",
+    "historial": ["pasó", "falló", "pasó", "falló", "pasó"],
+    "mismo_commit": true
+  },
+  {
+    "id": "F-03",
+    "test": "tests/e2e/test_transferencia_web.py::test_el_cliente_ve_el_mensaje_de_saldo_insuficiente",
+    "caso": "CP-05",
+    "error": "TimeoutError: waiting for get_by_role(\"button\", name=\"Transferir\") — locator not found",
+    "historial": ["pasó", "pasó", "falló"],
+    "mismo_commit": false,
+    "cambio_reciente": "app/static/transferir.html: el botón ahora dice 'Confirmar transferencia'"
+  },
+  {
+    "id": "F-04",
+    "test": "tests/api/test_transferencias_api.py::test_acumulado_sobre_el_limite_diario_se_rechaza",
+    "caso": "CP-07",
+    "error": "assert 201 == 422",
+    "historial": ["pasó", "pasó", "falló"],
+    "mismo_commit": false
+  }
+]

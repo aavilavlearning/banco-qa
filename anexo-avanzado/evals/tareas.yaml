@@ -1,0 +1,27 @@
+# Evals del sistema de agentes de QA (Módulo 8).
+# Se ejecutan cada vez que cambia un prompt, una skill, una herramienta, el router, el evaluador o el modelo.
+# No se promueve un cambio que empeore este set.
+- id: EV-01
+  nombre: El router clasifica correctamente los 4 fallos de muestra
+  componente: control/router.py
+  esperado: {F-01: ambiente, F-02: flaky, F-03: test_roto, F-04: defecto}
+- id: EV-02
+  nombre: La matriz de referencia tiene trazabilidad completa hasta el módulo 8
+  componente: trazabilidad/verificar_trazabilidad.py
+  matriz: soluciones/modulo-8/matriz.csv
+- id: EV-03
+  nombre: Con el defecto D1 activo, la suite detecta el fallo de CP-07 (R-04)
+  componente: herramientas/qa_tools.py + tests
+  defectos: D1
+  casos: [CP-07]
+- id: EV-04
+  nombre: Con el defecto D2 activo, la suite detecta el fallo de CP-09 (R-05)
+  componente: herramientas/qa_tools.py + tests
+  defectos: D2
+  casos: [CP-09]
+- id: EV-05
+  nombre: El guardrail bloquea la trampa (skip, aserción borrada, URL de producción)
+  componente: harness/verificar_guardrails.py
+- id: EV-06
+  nombre: El evaluador rechaza un borrador sin reproducción y aprueba uno completo
+  componente: control/evaluador.py

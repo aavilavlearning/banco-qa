@@ -1,0 +1,2 @@
+Riesgo,Descripcion,Reglas,Impacto,Probabilidad,Prioridad
+RSK-01,Debitar sin saldo suficiente provoca saldos negativos y pérdida para el banco,R-03,Alto,Media,Alta

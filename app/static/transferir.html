@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>BancoQA · Transferir a terceros</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 48px auto; color: #0f172a; }
+    h1 { font-size: 1.4rem; }
+    .aviso { background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: .85rem; }
+    label { display: block; margin-top: 16px; font-weight: 600; }
+    input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+    button { margin-top: 20px; padding: 10px 16px; background: #1d4ed8; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+    [role=alert] { margin-top: 16px; color: #b91c1c; }
+    [role=status] { margin-top: 16px; color: #15803d; }
+  </style>
+</head>
+<body>
+  <h1>Transferir a terceros</h1>
+  <p class="aviso">BancoQA es un banco de práctica. Todos los datos son ficticios.</p>
+  <form id="formulario">
+    <label for="origen">Cuenta origen</label>
+    <input id="origen" name="origen" required>
+    <label for="destino">Cuenta destino</label>
+    <input id="destino" name="destino" required>
+    <label for="monto">Monto</label>
+    <input id="monto" name="monto" inputmode="decimal" required>
+    <button type="submit">Transferir</button>
+  </form>
+  <div id="error" role="alert"></div>
+  <div id="exito" role="status"></div>
+  <script>
+    const form = document.getElementById('formulario');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const error = document.getElementById('error');
+      const exito = document.getElementById('exito');
+      error.textContent = '';
+      exito.textContent = '';
+      const resp = await fetch('/api/transferencias', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cuenta_origen: document.getElementById('origen').value.trim(),
+          cuenta_destino: document.getElementById('destino').value.trim(),
+          monto: document.getElementById('monto').value.trim(),
+        }),
+      });
+      const datos = await resp.json();
+      if (resp.status === 201) {
+        exito.textContent = `Transferencia aprobada. Operación ${datos.operacion}`;
+      } else {
+        error.textContent = datos.mensaje || datos.detail || 'No se pudo procesar la operación';
+      }
+    });
+  </script>
+</body>
+</html>

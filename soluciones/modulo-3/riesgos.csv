@@ -1,0 +1,7 @@
+Riesgo,Descripcion,Reglas,Impacto,Probabilidad,Prioridad,Casos
+RSK-02,Superar el límite diario sumando varias operaciones provoca exposición a fraude,R-04,Alto,Alta,Crítica,CP-06; CP-07; CP-08
+RSK-01,Debitar sin saldo suficiente provoca saldos negativos y pérdida para el banco,R-03,Alto,Media,Alta,CP-04; CP-05
+RSK-03,Transferir a cuentas bloqueadas o no válidas provoca fondos retenidos o enviados a quien no corresponde,R-05; R-07,Alto,Media,Alta,CP-09; CP-11; CP-12; CP-18
+RSK-04,Aceptar montos inválidos o con decimales de más provoca descuadres contables,R-01; R-02,Medio,Media,Media,CP-01; CP-02; CP-03; CP-19
+RSK-05,Transferir entre monedas distintas sin conversión provoca montos incorrectos,R-06,Alto,Baja,Media,CP-10
+RSK-06,Procesar interbancarias fuera de horario provoca operaciones que la otra entidad no liquida,R-08,Medio,Media,Media,CP-13; CP-14; CP-15; CP-16; CP-17

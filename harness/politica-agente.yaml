@@ -1,0 +1,28 @@
+# Política de operación de agente-qa-api (Módulo 8).
+# Formato propio del laboratorio: es la fuente de verdad. Se aplica sin código con:
+#   permisos del host (.claude/settings.json o aprobaciones de Copilot), protección de rama,
+#   CODEOWNERS y la plantilla de PR (harness/proteccion-rama.md).
+# Opcional: anexo-avanzado/harness/verificar_guardrails.py automatiza las verificaciones de salida.
+agente: agente-qa-api
+ambientes_permitidos: [dev, qa]
+herramientas:
+  permitidas: [read, edit, banco-qa/ejecutar_suite, banco-qa/obtener_resultados_ci]
+  con_aprobacion: [banco-qa/crear_borrador_defecto]   # HITL-03
+  prohibidas: [terminal_libre, desplegar, escribir_bd, push_main]
+rutas_escritura: [tests/agente/, trazabilidad/, salidas/]
+limites:
+  iteraciones: 8
+  minutos: 20
+  costo_usd: 2
+verificaciones_de_salida:          # las aplica la revisión obligatoria del PR (CODEOWNERS + checklist), no el agente
+  - tests_en_verde_o_defecto_reportado
+  - no_reduce_aserciones
+  - sin_skip_ni_xfail_nuevos
+  - sin_tests_eliminados
+  - sin_datos_reales            # tarjetas de 16 dígitos, DNI, correos reales
+  - sin_urls_fuera_de_dev_qa
+  - trazabilidad_completa
+auditoria:
+  herramientas: logs/auditoria.jsonl
+  decisiones_humanas: salidas/registro-hitl.md
+interruptor_apagado: "Quitar el servidor banco-qa de mcp.json detiene todas las acciones del agente"

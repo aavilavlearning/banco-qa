@@ -1,0 +1,20 @@
+HU,CA,Regla,Caso,Descripcion,Datos,Esperado,Prioridad,Prompt
+HU-01,CA-01,R-01,CP-01,Monto mínimo exacto se aprueba y registra movimientos,191-0000001 -> 191-0000003; 1.00,Aprobada,Alta,P-01 v1
+HU-01,CA-02,R-01,CP-02,Monto por debajo del mínimo,191-0000001 -> 191-0000003; 0.99,Rechazada R-01: El monto mínimo es 1.00,Media,P-01 v1
+HU-01,CA-02,R-02,CP-03,Monto con 3 decimales,191-0000001 -> 191-0000003; 10.123,Rechazada R-02: El monto admite como máximo 2 decimales,Media,P-01 v1
+HU-01,CA-01,R-03,CP-04,Transferir exactamente el saldo,191-0000003 -> 191-0000001; 500.00,Aprobada,Alta,P-01 v1
+HU-01,CA-02,R-03,CP-05,Saldo insuficiente por 0.01,191-0000003 -> 191-0000001; 500.01,Rechazada R-03: Saldo insuficiente para realizar la operación,Alta,P-01 v1
+HU-01,CA-01,R-04,CP-06,Acumulado llega exacto al límite en soles,191-0000001 -> 191-0000003; 6000.00 + 4000.00,Aprobada,Alta,P-01 v1
+HU-01,CA-02,R-04,CP-07,Acumulado supera el límite en soles por 0.01,191-0000001 -> 191-0000003; 6000.00 + 4000.01,Rechazada R-04: La operación supera tu límite diario,Alta,P-01 v1
+HU-01,CA-02,R-04,CP-08,Supera el límite diario en dólares,191-0000002 -> 191-0000005; 3000.01,Rechazada R-04: La operación supera tu límite diario,Alta,P-01 v1
+HU-01,CA-02,R-05,CP-09,Cuenta destino bloqueada,191-0000001 -> 191-0000004; 100.00,Rechazada R-05: La cuenta origen o destino no está habilitada,Alta,P-01 v1
+HU-01,CA-02,R-06,CP-10,Monedas distintas,191-0000001 -> 191-0000005; 100.00,Rechazada R-06: Las cuentas deben tener la misma moneda,Alta,P-01 v1
+HU-01,CA-02,R-07,CP-11,Cuenta destino inexistente,191-0000001 -> 191-9999999; 100.00,Rechazada R-07: La cuenta destino no es válida para esta operación,Media,P-01 v1
+HU-01,CA-02,R-07,CP-12,Destino del mismo titular,191-0000001 -> 191-0000002; 100.00,Rechazada R-07: La cuenta destino no es válida para esta operación,Media,P-01 v1
+HU-01,CA-03,R-08,CP-13,Interbancaria a las 19:59 de un día hábil,191-0000001 -> 999-0000006; 100.00; martes 19:59,Aprobada,Media,P-01 v1
+HU-01,CA-03,R-08,CP-14,Interbancaria a las 20:00,191-0000001 -> 999-0000006; 100.00; martes 20:00,Rechazada R-08: Las transferencias interbancarias solo se procesan de lunes a viernes de 08:00 a 20:00,Media,P-01 v1
+HU-01,CA-03,R-08,CP-15,Interbancaria un sábado,191-0000001 -> 999-0000006; 100.00; sábado 10:00,Rechazada R-08: Las transferencias interbancarias solo se procesan de lunes a viernes de 08:00 a 20:00,Media,P-01 v1
+HU-01,CA-03,R-08,CP-16,Interbancaria a las 08:00 (agregado en v3 del prompt),191-0000001 -> 999-0000006; 100.00; martes 08:00,Aprobada,Media,P-01 v3
+HU-01,CA-03,R-08,CP-17,Interbancaria a las 07:59 (agregado en v3 del prompt),191-0000001 -> 999-0000006; 100.00; martes 07:59,Rechazada R-08: Las transferencias interbancarias solo se procesan de lunes a viernes de 08:00 a 20:00,Media,P-01 v3
+HU-01,CA-02,R-05,CP-18,Cuenta origen bloqueada (agregado en v2 del prompt),191-0000004 -> 191-0000003; 100.00,Rechazada R-05: La cuenta origen o destino no está habilitada,Alta,P-01 v2
+HU-01,CA-02,R-01,CP-19,Monto no numérico (agregado en v2 del prompt),191-0000001 -> 191-0000003; abc,Rechazada R-01: El monto mínimo es 1.00,Media,P-01 v2
